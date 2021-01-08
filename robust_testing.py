@@ -59,5 +59,5 @@ class RobustTesting:
 
 if __name__ == '__main__':
     n = int(input("Enter number of parameter: "))
-    bvc = RobustTesting(n)
-    bvc.get_csv()
+    rbc = RobustTesting(n)
+    rbc.get_csv()

@@ -1,15 +1,12 @@
-test = [[2,3,7,8],[2,3,7,8],[2,3,7,8]]
-out = []
-tem = []
-def f(j):
-    if j == 4:
-        j = 0
-        return
-    for i in range(3):
-        f(j+1)
-        tem.append(test[i][j])
-    print(tem)
-    tem.clear()
+from bvc import BVC
+from robust_testing import RobustTesting
+from worst_test_case import WorstTestCase
 
 if __name__ == '__main__':
-    f(0)
+    n = int(input("Enter number of parameter: "))
+    bvc = BVC(n)
+    bvc.get_csv()
+    rbc = RobustTesting(n)
+    rbc.get_csv()
+    wrc = WorstTestCase(n)
+    wrc.get_csv()

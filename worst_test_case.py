@@ -7,6 +7,29 @@ class WorstTestCase:
         self.boundary_values = []
         self.extreme_values = []
         self.table = []
+        self.t1 = []
+
+    def f(self, i, table1):
+        tem = []
+        if i == 0:
+            for j in range(5):
+                a = self.extreme_values[i][j]
+                tem.append([a])
+        else:
+            for j in range(len(table1)):
+                a = table1[j]
+                # print(a)
+                for k in range(5):
+                    b = a[:]
+                    b.append(self.extreme_values[i][k])
+                    # print(b)
+                    tem.append(b)
+        # print(tem)
+        return tem
+
+    def generateTable(self):
+        for i in range(self.num_param):
+            self.t1 = self.f(i, self.t1)
 
     def input_data(self):
         for i in range(self.num_param):
@@ -28,11 +51,12 @@ class WorstTestCase:
             header.append(f'param{i+1}')
         header.append("expected output")
         self.table.append(header)
-        for i in range(self.num_param):
-            for j in range(4):
-                for k in range(4):
-                    
-
+        self.generateTable()
+        for i in range(len(self.t1)):
+            tab = [i+1]
+            for j in range(len(self.t1[i])):
+                tab.append(self.t1[i][j])
+            self.table.append(tab)
 
     def get_csv(self):
         self.input_data()
@@ -46,5 +70,5 @@ class WorstTestCase:
 
 if __name__ == '__main__':
     n = int(input("Enter number of parameter: "))
-    bvc = WorstTestCase(n)
-    bvc.get_csv()
+    wrc = WorstTestCase(n)
+    wrc.get_csv()
